@@ -1,0 +1,7 @@
+.header {
+    background-color: #42afa8;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
