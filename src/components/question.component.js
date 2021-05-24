@@ -16,10 +16,12 @@ export default class Question extends Component {
             currentQuestion: {
                 id: null,
                 title: "",
-                hint: "",
+                hint: null,
                 question_type_id: null,
                 questionnaire_id: null,
                 deleted: null,
+                modified: null,
+                modified_times: null
             }
         };
     }
@@ -113,6 +115,7 @@ export default class Question extends Component {
         )
             .then(response => {
                 console.log(response.data);
+                this.getQuestion(this.state.currentQuestion.id);
                 this.setState({
                     message: "The question was updated successfully."
                 });
@@ -138,16 +141,22 @@ export default class Question extends Component {
 
                             <div>
                                 <label htmlFor="hint">Hint</label>
-                                <input type="text" id="hint" value={currentQuestion.hint} onChange={this.onChangeHint} name="hint" />
+                                <input type="text" id="hint" value={(currentQuestion.hint == null ? "" : currentQuestion.hint)} onChange={this.onChangeHint} name="hint" />
+                            </div>
+
+                            <div>
+                                <label htmlFor="type">Question Type</label>
+                                <input type="text" id="type" value={(currentQuestion.question_type_id == null ? "" : currentQuestion.question_type_id)} onChange={this.onChangeQuestionType} name="type" />
                             </div>
                         </form>
 
                         <button type="submit" onClick={this.updateQuestion}>Update</button>
                         <p>{this.state.message}</p>
+                        <p>Modified {(currentQuestion.modified_times == null ? 0 : currentQuestion.modified_times)} times. {(currentQuestion.modified != null ? `Last update on: ${currentQuestion.modified}.` : "")}</p>
                     </div>
                 ) : (
                     <div>
-                        <p>Please click on a question...</p>
+                        <p>Please choose a question...</p>
                     </div>
                 )}
             </div>

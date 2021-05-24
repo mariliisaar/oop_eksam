@@ -36,7 +36,7 @@ export default class QuestionList extends Component {
                 <h4>Question List</h4>
                 <ul>
                     {questions && questions.map((question, index) => (
-                        <li key={index}>{question.title}</li>
+                        <li key={index}><Link to={"/question/" + (index + 1)}>{question.title}</Link></li>
                     ))}
                 </ul>
             </div>

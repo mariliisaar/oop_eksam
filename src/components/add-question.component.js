@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QuestionDataService from "../services/tutorial.service";
+import QuestionDataService from "../services/question.service";
 
 export default class AddQuestion extends Component {
     constructor(props) {
@@ -96,27 +96,29 @@ export default class AddQuestion extends Component {
     }
 
     render() {
-        <div>
-            {this.state.submitted ? (
-                <div>
-                    <h4>Question successfully submitted</h4>
-                    <button onClick={this.newQuestion}>Add</button>
-                </div>
-            ) : (
-                <div>
+        return(
+            <div>
+                {this.state.submitted ? (
                     <div>
-                        <label htmlFor="title">Question *</label>
-                        <input type="text" id="title" required value={this.state.title} onChange={this.onChangeTitle} name="title" />
+                        <h4>Question successfully submitted</h4>
+                        <button onClick={this.newQuestion}>Add</button>
                     </div>
-
+                ) : (
                     <div>
-                        <label htmlFor="hint">Hint</label>
-                        <input type="text" id="hint" value={this.state.hint} onChange={this.onChangeHint} name="hint" />
-                    </div>
+                        <div>
+                            <label htmlFor="title">Question *</label>
+                            <input type="text" id="title" required value={this.state.title} onChange={this.onChangeTitle} name="title" />
+                        </div>
 
-                    <button onClick={this.saveQuestion}>Save</button>
-                </div>
-            )}
-        </div>
+                        <div>
+                            <label htmlFor="hint">Hint</label>
+                            <input type="text" id="hint" value={this.state.hint} onChange={this.onChangeHint} name="hint" />
+                        </div>
+
+                        <button onClick={this.saveQuestion}>Save</button>
+                    </div>
+                )}
+            </div>
+        )
     };
 }
